@@ -1,4 +1,5 @@
 
+[基础配置](https://github.com/573009114/Kubernetes.install/blob/master/No.00%20%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2.md)
 
 [部署etcd](https://github.com/573009114/Kubernetes.install/blob/master/No.03%20%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2etcd%E6%9C%8D%E5%8A%A1%EF%BC%88%E5%B8%A6%E8%AF%81%E4%B9%A6%EF%BC%89.md)
 
