@@ -17,6 +17,8 @@ gpgcheck=0
  
 yum install socat kubelet kubeadm kubectl kubernetes-cni -y
 
+systemctl enable kubelet && systemctl start kubelet
+
 #下载镜像组件
 docker pull gotok8s/kube-apiserver:v1.16.2
 docker pull gotok8s/kube-controller-manager:v1.16.2
