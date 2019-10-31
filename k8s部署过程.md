@@ -44,7 +44,7 @@ docker rmi gotok8s/kube-scheduler:v1.16.2
 apiVersion: kubeadm.k8s.io/v1beta1
 kind: ClusterConfiguration
 kubernetesVersion: v1.16.2
-controlPlaneEndpoint: kube.cluster:6443  # haproxy地址及端口
+controlPlaneEndpoint: k8s.master:6443  # haproxy地址及端口
 imageRepository: registry.cn-hangzhou.aliyuncs.com/google_containers # 指定镜像源为阿里源
 apiServer:
   certSANs:
@@ -75,9 +75,9 @@ mode: ipvs
 
 2. 编辑/etc/host
 ```
-10.10.0.21  kube.cluster km1
-10.10.0.22  kube.cluster km2
-10.10.0.23  kube.cluster km3
+10.10.0.21  k8s.master km1
+10.10.0.21  k8s.master km2
+10.10.0.21  k8s.master km3
 ```
 
 3.初始化机器
