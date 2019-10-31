@@ -5,7 +5,7 @@
 [安装指定版本docker](https://github.com/573009114/Kubernetes.install/blob/master/No.05%20%E5%AE%89%E8%A3%85%E6%8C%87%E5%AE%9A%E7%89%88%E6%9C%ACdocker.md)
 #### 准备3台主节点：km1/km2/km3
 
-# 添加docker 配置 cat /etc/docker/daemon.json
+#### 添加docker 配置 cat /etc/docker/daemon.json
 ```
 {
   "registry-mirrors": ["https://mirror.ccs.tencentyun.com"],
