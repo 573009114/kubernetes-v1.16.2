@@ -5,6 +5,38 @@
 [安装指定版本docker](https://github.com/573009114/Kubernetes.install/blob/master/No.05%20%E5%AE%89%E8%A3%85%E6%8C%87%E5%AE%9A%E7%89%88%E6%9C%ACdocker.md)
 #### 准备3台主节点：km1/km2/km3
 
+ ```
+# 添加镜像源
+vim /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=0
+
+ 
+yum install socat kubelet kubeadm kubectl kubernetes-cni -y
+
+#下载镜像组件
+docker pull gotok8s/kube-apiserver:v1.16.2
+docker pull gotok8s/kube-controller-manager:v1.16.2
+docker pull gotok8s/kube-scheduler:v1.16.2
+docker pull gotok8s/kube-proxy:v1.16.2
+
+#修改镜像名
+docker tag 8454cbe08dc9 k8s.gcr.io/kube-proxy:v1.16.2
+docker tag ebac1ae204a2 k8s.gcr.io/kube-scheduler:v1.16.2
+docker tag c2c9a0406787 k8s.gcr.io/kube-apiserver:v1.16.2
+docker tag 6e4bffa46d70 k8s.gcr.io/kube-controller-manager:v1.16.2
+
+#删除多余镜像
+docker rmi gotok8s/kube-proxy:v1.16.2
+docker rmi gotok8s/kube-apiserver:v1.16.2
+docker rmi gotok8s/kube-controller-manager:v1.16.2
+docker rmi gotok8s/kube-scheduler:v1.16.2
+
+ ```
+
 1.编辑kubeadm-config.yaml
 ```
 apiVersion: kubeadm.k8s.io/v1beta1
