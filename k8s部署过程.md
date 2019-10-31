@@ -91,8 +91,13 @@ mkdir -p $HOME/.kube
 cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 chown $(id -u):$(id -g) $HOME/.kube/config
 ```
-4.加入节点
+4.新加入master
 ```
-kubeadm join k8s.master:6443 --token h599ue.pb1vil5hknveorqg \
-    --discovery-token-ca-cert-hash sha256:90732df9c15c7eeb4b3e25f5767b3014e449add94438c532434d1865d2c4f79b
+kubeadm join k8s.master:6443 --token kyx7bc.6hmtovz2y5xa2jn4 \
+>     --discovery-token-ca-cert-hash sha256:6fe236110f964bf35e551628837a4463d782189089768634296fa8933eeab9c0 \
+>     --control-plane --certificate-key d8b08d8a5a9653d683691da86eb560111c968233a40f4108e9dd0f16e9a110e9
+```
+5.新加入节点
+```
+kubeadm join k8s.master:6443 --token kyx7bc.6hmtovz2y5xa2jn4  --discovery-token-ca-cert-hash sha256:6fe236110f964bf35e551628837a4463d782189089768634296fa8933eeab9c0
 ```
