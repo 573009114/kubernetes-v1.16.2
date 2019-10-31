@@ -5,6 +5,20 @@
 [安装指定版本docker](https://github.com/573009114/Kubernetes.install/blob/master/No.05%20%E5%AE%89%E8%A3%85%E6%8C%87%E5%AE%9A%E7%89%88%E6%9C%ACdocker.md)
 #### 准备3台主节点：km1/km2/km3
 
+# 添加docker 配置 cat /etc/docker/daemon.json
+```
+{
+  "registry-mirrors": ["https://mirror.ccs.tencentyun.com"],
+  "storage-driver": "overlay2",
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "storage-opts": [
+    "overlay2.override_kernel_check=true"
+  ],
+  "live-restore": true
+}
+
+```
+
  ```
 # 添加镜像源
 vim /etc/yum.repos.d/kubernetes.repo
@@ -69,7 +83,7 @@ kubeadm config images pull --config /etc/kubernetes/kubeadm-config.yaml
 ```
 
 ```
-kubeadm init --config /etc/kubernetes/kubeadm-config.yaml --experimental-upload-certs
+kubeadm init --config /etc/kubernetes/kube.yaml --upload-certs
 mkdir -p $HOME/.kube
 cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 chown $(id -u):$(id -g) $HOME/.kube/config
