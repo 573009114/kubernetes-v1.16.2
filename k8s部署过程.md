@@ -42,7 +42,8 @@ docker rmi gotok8s/kube-scheduler:v1.16.2
 apiVersion: kubeadm.k8s.io/v1beta1
 kind: ClusterConfiguration
 kubernetesVersion: v1.16.2
-controlPlaneEndpoint: kube.cluster:6443
+controlPlaneEndpoint: kube.cluster:6443  # haproxy地址及端口
+imageRepository: registry.cn-hangzhou.aliyuncs.com/google_containers # 指定镜像源为阿里源
 apiServer:
   certSANs:
   - 10.20.55.168
@@ -79,7 +80,7 @@ mode: ipvs
 
 3.初始化机器
 ```
-kubeadm init --config /etc/kubernetes/kubeadm-config.yaml
+kubeadm init --config /etc/kubernetes/kubeadm-config.yaml --experimental-upload-certs
 mkdir -p $HOME/.kube
 cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 chown $(id -u):$(id -g) $HOME/.kube/config
