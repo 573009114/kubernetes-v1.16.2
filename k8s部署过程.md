@@ -89,6 +89,6 @@ chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 4.加入节点
 ```
-kubeadm join kube.cluster:6443 --token h599ue.pb1vil5hknveorqg \
+kubeadm join k8s.master:6443 --token h599ue.pb1vil5hknveorqg \
     --discovery-token-ca-cert-hash sha256:90732df9c15c7eeb4b3e25f5767b3014e449add94438c532434d1865d2c4f79b
 ```
