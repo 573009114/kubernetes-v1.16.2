@@ -44,7 +44,9 @@ controlPlaneEndpoint: k8s.master:6443  # haproxy地址及端口
 imageRepository: registry.cn-hangzhou.aliyuncs.com/google_containers # 指定镜像源为阿里源
 apiServer:
   certSANs:
-  - 10.20.55.168
+  - 10.20.55.171
+  - 10.20.55.172
+  - 10.20.55.173
   - 127.0.0.1
   - k8s.master
 networking:
@@ -53,12 +55,12 @@ networking:
 etcd:
     external:
         endpoints:
-        - https://10.20.55.168:2379
-        - https://10.20.55.169:2379
-        - https://10.20.55.170:2379
-        caFile: /etc/kubernetes/pki/etcd-ca.pem
-        certFile: /etc/kubernetes/pki/etcd.pem
-        keyFile: /etc/kubernetes/pki/etcd-key.pem
+        - https://10.20.55.171:2379
+        - https://10.20.55.172:2379
+        - https://10.20.55.173:2379
+        caFile: /etc/etcd/ssl/etcd-ca.pem
+        certFile: /etc/etcd/ssl/etcd.pem
+        keyFile: /etc/etcd/ssl/etcd-key.pem
 ---
 apiVersion: kubeproxy.config.k8s.io/v1alpha1
 kind: KubeProxyConfiguration
@@ -67,6 +69,7 @@ ipvs:
   scheduler: rr
   syncPeriod: 10s
 mode: ipvs
+
 ```
 
 2. 编辑/etc/host
