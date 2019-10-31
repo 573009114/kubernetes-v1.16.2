@@ -18,25 +18,7 @@ gpgcheck=0
 yum install socat kubelet kubeadm kubectl kubernetes-cni -y
 
 systemctl enable kubelet && systemctl start kubelet
-
-#下载镜像组件
-docker pull gotok8s/kube-apiserver:v1.16.2
-docker pull gotok8s/kube-controller-manager:v1.16.2
-docker pull gotok8s/kube-scheduler:v1.16.2
-docker pull gotok8s/kube-proxy:v1.16.2
-
-#修改镜像名
-docker tag 8454cbe08dc9 k8s.gcr.io/kube-proxy:v1.16.2
-docker tag ebac1ae204a2 k8s.gcr.io/kube-scheduler:v1.16.2
-docker tag c2c9a0406787 k8s.gcr.io/kube-apiserver:v1.16.2
-docker tag 6e4bffa46d70 k8s.gcr.io/kube-controller-manager:v1.16.2
-
-#删除多余镜像
-docker rmi gotok8s/kube-proxy:v1.16.2
-docker rmi gotok8s/kube-apiserver:v1.16.2
-docker rmi gotok8s/kube-controller-manager:v1.16.2
-docker rmi gotok8s/kube-scheduler:v1.16.2
-
+ 
  ```
 
 1.编辑kubeadm-config.yaml
@@ -81,6 +63,11 @@ mode: ipvs
 ```
 
 3.初始化机器
+```
+#下载镜像
+kubeadm config images pull --config /etc/kubernetes/kubeadm-config.yaml
+```
+
 ```
 kubeadm init --config /etc/kubernetes/kubeadm-config.yaml --experimental-upload-certs
 mkdir -p $HOME/.kube
