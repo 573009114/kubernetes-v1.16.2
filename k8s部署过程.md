@@ -75,9 +75,9 @@ mode: ipvs
 
 2. 编辑/etc/host
 ```
-10.10.0.21  k8s.master km1
-10.10.0.21  k8s.master km2
-10.10.0.21  k8s.master km3
+10.20.55.170  k8s.master   #km1
+10.20.55.170  k8s.master   #km2
+10.20.55.170  k8s.master   #km3
 ```
 
 3.初始化机器
